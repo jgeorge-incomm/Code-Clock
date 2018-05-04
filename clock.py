@@ -10,10 +10,10 @@ def decimalTime(date):
     decimalSecond = date.second * decimalSecondsPerSecond
     decimal = decimalHour + decimalMinute + decimalSecond
 
-    print "decimalHour: " + str(decimalHour)
-    print "decimalMinute: " + str(decimalMinute)
-    print "decimalSecond: " + str(decimalSecond)
-    print "decimal: " + str(decimal)
+    # print "decimalHour: " + str(decimalHour)
+    # print "decimalMinute: " + str(decimalMinute)
+    # print "decimalSecond: " + str(decimalSecond)
+    # print "decimal: " + str(decimal)
     
     return decimal
 
@@ -48,9 +48,9 @@ def renderTime(time):
     hours = int(time / 10000)
     minutes = int((time - (hours * 10000)) / 100)
     seconds = int(time - (hours * 10000) - (minutes * 100))
-    print "hours: " + str(hours)
-    print "minutes: " + str(minutes)
-    print "seconds: " + str(seconds)
+    # print "hours: " + str(hours)
+    # print "minutes: " + str(minutes)
+    # print "seconds: " + str(seconds)
 
     clear_console = 'clear' if os.name == 'posix' else 'CLS'
     os.system(clear_console)
