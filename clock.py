@@ -52,8 +52,8 @@ def renderTime(time):
     print "minutes: " + str(minutes)
     print "seconds: " + str(seconds)
 
-    # clear_console = 'clear' if os.name == 'posix' else 'CLS'
-    # os.system(clear_console)
+    clear_console = 'clear' if os.name == 'posix' else 'CLS'
+    os.system(clear_console)
 
     renderBinary(hours)
     renderBinary(minutes)
