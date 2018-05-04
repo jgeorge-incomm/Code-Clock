@@ -10,7 +10,6 @@ def decimalTime(date):
     decimalSecond = date.second * decimalSecondsPerSecond
     decimal = decimalHour + decimalMinute + decimalSecond
 
-
     print decimalHour
     print decimalMinute
     print decimalSecond
@@ -26,11 +25,36 @@ def sleepTime(time):
 
     return remainder
 
+def renderHours(hours):
+    print bin(int(hours))
+
+
+def renderSeconds(seconds):
+    print bin(int(seconds))
+
+def renderBinary(value):
+    binaryValue = bin(int(value))
+    stringValue = str(binaryValue)[2:]
+
+    stringValue = stringValue.replace('0', ' _')
+    stringValue = stringValue.replace('1', ' =')
+
+    print stringValue
 
 def renderTime(time):
-    clear_console = 'clear' if os.name == 'posix' else 'CLS'
-    os.system(clear_console)
+    # clear_console = 'clear' if os.name == 'posix' else 'CLS'
+    # os.system(clear_console)
 
+    hours = round(time / 10000)
+    minutes = round((time - (hours * 10000)) / 100)
+    seconds = round(time - (hours * 10000) - (minutes * 100))
+    print "hours: " + str(hours)
+    print "minutes: " + str(minutes)
+    print "seconds: " + str(seconds)
+
+    renderBinary(hours)
+    renderBinary(minutes)
+    renderBinary(seconds)
     print round(time)
 
     # sys.stdout.write(outstr)
@@ -39,6 +63,12 @@ def renderTime(time):
 def runLoop():
 
     while True:
+
+        # START: debug remove me 
+        clear_console = 'clear' if os.name == 'posix' else 'CLS'
+        os.system(clear_console)
+        # END: debug remove me 
+
         date = datetime.datetime.now()
         decimal = decimalTime(date)
 
@@ -46,10 +76,6 @@ def runLoop():
 
         sleep = sleepTime(decimal)
         time.sleep(sleep)
-
-
-
-
 
 def animgif_to_ASCII_animation(animated_gif_path):
     chars = ('/', '-', '\\', '|')
