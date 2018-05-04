@@ -1,8 +1,8 @@
 import sys, os, time, datetime
 
 def decimalTime(date):
-    decimalSecondsPerHour = 8640
-    decimalSecondsPerMinute = 86.4
+    decimalSecondsPerHour = 2400
+    decimalSecondsPerMinute = 144
     decimalSecondsPerSecond = 0.864
 
     decimalHour = date.hour * decimalSecondsPerHour
@@ -45,15 +45,15 @@ def renderBinary(value):
     sys.stdout.write(stringValue)
 
 def renderTime(time):
-    # clear_console = 'clear' if os.name == 'posix' else 'CLS'
-    # os.system(clear_console)
-
     hours = int(time / 10000)
     minutes = int((time - (hours * 10000)) / 100)
     seconds = int(time - (hours * 10000) - (minutes * 100))
     print "hours: " + str(hours)
     print "minutes: " + str(minutes)
     print "seconds: " + str(seconds)
+
+    # clear_console = 'clear' if os.name == 'posix' else 'CLS'
+    # os.system(clear_console)
 
     renderBinary(hours)
     renderBinary(minutes)
