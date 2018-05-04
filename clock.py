@@ -10,9 +10,10 @@ def decimalTime(date):
     decimalSecond = date.second * decimalSecondsPerSecond
     decimal = decimalHour + decimalMinute + decimalSecond
 
-    print decimalHour
-    print decimalMinute
-    print decimalSecond
+    print "decimalHour: " + str(decimalHour)
+    print "decimalMinute: " + str(decimalMinute)
+    print "decimalSecond: " + str(decimalSecond)
+    print "decimal: " + str(decimal)
     
     return decimal
 
@@ -33,21 +34,23 @@ def renderSeconds(seconds):
     print bin(int(seconds))
 
 def renderBinary(value):
+    value = abs(value)
     binaryValue = bin(int(value))
     stringValue = str(binaryValue)[2:]
 
     stringValue = stringValue.replace('0', ' _')
     stringValue = stringValue.replace('1', ' =')
+    stringValue += '\r\n'
 
-    print stringValue
+    sys.stdout.write(stringValue)
 
 def renderTime(time):
     # clear_console = 'clear' if os.name == 'posix' else 'CLS'
     # os.system(clear_console)
 
-    hours = round(time / 10000)
-    minutes = round((time - (hours * 10000)) / 100)
-    seconds = round(time - (hours * 10000) - (minutes * 100))
+    hours = int(time / 10000)
+    minutes = int((time - (hours * 10000)) / 100)
+    seconds = int(time - (hours * 10000) - (minutes * 100))
     print "hours: " + str(hours)
     print "minutes: " + str(minutes)
     print "seconds: " + str(seconds)
@@ -55,9 +58,7 @@ def renderTime(time):
     renderBinary(hours)
     renderBinary(minutes)
     renderBinary(seconds)
-    print round(time)
 
-    # sys.stdout.write(outstr)
     sys.stdout.flush()
 
 def runLoop():
