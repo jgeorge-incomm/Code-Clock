@@ -19,14 +19,14 @@ def decimalTime(date):
     }
 
     # START: debug uncomment this section 
-    print "secondsSinceMidnight: " + str(secondsSinceMidnight)
-    print "decimalSecondsSinceMidnight: " + str(decimalSecondsSinceMidnight)
-    print "decimalSecondsRemainder(minutes): " + str(decimalSecondsRemainder)
-    print "date: " + str(date)
-    print "decimalHour: " + str(decimalHour)
-    print "decimalMinute: " + str(decimalMinute)
-    print "decimalSecond: " + str(decimalSecond)
-    print "decimal: " + str(decimal)
+    # print "secondsSinceMidnight: " + str(secondsSinceMidnight)
+    # print "decimalSecondsSinceMidnight: " + str(decimalSecondsSinceMidnight)
+    # print "decimalSecondsRemainder(minutes): " + str(decimalSecondsRemainder)
+    # print "date: " + str(date)
+    # print "decimalHour: " + str(decimalHour)
+    # print "decimalMinute: " + str(decimalMinute)
+    # print "decimalSecond: " + str(decimalSecond)
+    # print "decimal: " + str(decimal)
     # END: debug uncomment this section 
     
     return decimal
@@ -50,8 +50,8 @@ def renderTime(time):
 
 
     # START: debug remove me 
-    # clear_console = 'clear' if os.name == 'posix' else 'CLS'
-    # os.system(clear_console)
+    clear_console = 'clear' if os.name == 'posix' else 'CLS'
+    os.system(clear_console)
     # END: debug remove me 
 
     renderBinary(time['hour'])
