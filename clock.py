@@ -78,40 +78,4 @@ def runLoop():
         sleep = sleepTime(decimal)
         time.sleep(sleep)
 
-def animgif_to_ASCII_animation(animated_gif_path):
-    chars = ('/', '-', '\\', '|')
-    clear_console = 'clear' if os.name == 'posix' else 'CLS'
-
-    # Step through forever, frame by frame
-    while True:
-        for index in range(0,len(chars)):
-
-            # Built up the string, by translating luminance values to characters
-            outstr = ''
-            outstr += 'Doing some important work: '
-            outstr += chars[index]
-
-            outstr += '\r\n'
-            outstr += 'Doing some important work: '
-            outstr += chars[(index + 1) % len(chars)]
-
-            outstr += '\r\n'
-            outstr += 'Doing some important work: '
-            outstr += chars[(index + 2) % len(chars)]
-
-            outstr += '\r\n'
-            outstr += 'Doing some important work: '
-            outstr += chars[(index + 4) % len(chars)]
-
-            outstr += '\r\n'
-
-            # Clear the console
-            os.system(clear_console)
-
-            # Write the current frame on stdout and sleep
-            sys.stdout.write(outstr)
-            sys.stdout.flush()
-            time.sleep(0.1)
-
-# run the animation based on some animated gif
 runLoop()
