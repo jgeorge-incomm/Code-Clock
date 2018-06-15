@@ -1,30 +1,37 @@
 import sys, os, time, datetime
 
 def decimalTime(date):
-    decimalSecondsPerHour = 2400
-    decimalSecondsPerMinute = 144
-    decimalSecondsPerSecond = 0.864
+    decimalSecondsPerSecond = 1.157407407407407
 
-    decimalHour = date.hour * decimalSecondsPerHour
-    decimalMinute = date.minute * decimalSecondsPerMinute
-    decimalSecond = date.second * decimalSecondsPerSecond
-    decimal = decimalHour + decimalMinute + decimalSecond
+    secondsSinceMidnight = (date - date.replace(hour=0, minute=0, second=0, microsecond=0)).total_seconds()
+    decimalSecondsSinceMidnight = secondsSinceMidnight * 1.157407407407407
+    print "secondsSinceMidnight: " + str(secondsSinceMidnight)
+    print "decimalSecondsSinceMidnight: " + str(decimalSecondsSinceMidnight)
 
-    # print "decimalHour: " + str(decimalHour)
-    # print "decimalMinute: " + str(decimalMinute)
-    # print "decimalSecond: " + str(decimalSecond)
-    # print "decimal: " + str(decimal)
+    decimalHour = int(decimalSecondsSinceMidnight / 10000)
+    decimalSecondsRemainder = decimalSecondsSinceMidnight - (decimalHour * 10000)
+
+    print "decimalSecondsRemainder(minutes): " + str(decimalSecondsRemainder)
+    decimalMinute = int(decimalSecondsRemainder / 100)
+    decimalSecond = int(round(decimalSecondsRemainder - (decimalMinute * 100)))
+
+    decimal = {
+        'hour': decimalHour,
+        'minute': decimalMinute,
+        'second': decimalSecond 
+    }
+
+    print "date: " + str(date)
+    print "decimalHour: " + str(decimalHour)
+    print "decimalMinute: " + str(decimalMinute)
+    print "decimalSecond: " + str(decimalSecond)
+    print "decimal: " + str(decimal)
     
     return decimal
 
 def sleepTime(time):
     sleep = 0.864
-
-    remainder = (time % 1)
-    if(remainder > 0.1):
-        sleep = remainder
-
-    return remainder
+    return sleep
 
 def renderHours(hours):
     print bin(int(hours))
@@ -45,19 +52,16 @@ def renderBinary(value):
     sys.stdout.write(stringValue)
 
 def renderTime(time):
-    hours = int(time / 10000)
-    minutes = int((time - (hours * 10000)) / 100)
-    seconds = int(time - (hours * 10000) - (minutes * 100))
-    # print "hours: " + str(hours)
-    # print "minutes: " + str(minutes)
-    # print "seconds: " + str(seconds)
 
-    clear_console = 'clear' if os.name == 'posix' else 'CLS'
-    os.system(clear_console)
 
-    renderBinary(hours)
-    renderBinary(minutes)
-    renderBinary(seconds)
+    # START: debug remove me 
+    # clear_console = 'clear' if os.name == 'posix' else 'CLS'
+    # os.system(clear_console)
+    # END: debug remove me 
+
+    renderBinary(time['hour'])
+    renderBinary(time['minute'])
+    renderBinary(time['second'])
 
     sys.stdout.flush()
 
@@ -65,10 +69,8 @@ def runLoop():
 
     while True:
 
-        # START: debug remove me 
         clear_console = 'clear' if os.name == 'posix' else 'CLS'
         os.system(clear_console)
-        # END: debug remove me 
 
         date = datetime.datetime.now()
         decimal = decimalTime(date)
