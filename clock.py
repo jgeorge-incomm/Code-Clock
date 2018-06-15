@@ -5,13 +5,10 @@ def decimalTime(date):
 
     secondsSinceMidnight = (date - date.replace(hour=0, minute=0, second=0, microsecond=0)).total_seconds()
     decimalSecondsSinceMidnight = secondsSinceMidnight * 1.157407407407407
-    print "secondsSinceMidnight: " + str(secondsSinceMidnight)
-    print "decimalSecondsSinceMidnight: " + str(decimalSecondsSinceMidnight)
 
     decimalHour = int(decimalSecondsSinceMidnight / 10000)
     decimalSecondsRemainder = decimalSecondsSinceMidnight - (decimalHour * 10000)
 
-    print "decimalSecondsRemainder(minutes): " + str(decimalSecondsRemainder)
     decimalMinute = int(decimalSecondsRemainder / 100)
     decimalSecond = int(round(decimalSecondsRemainder - (decimalMinute * 100)))
 
@@ -21,11 +18,16 @@ def decimalTime(date):
         'second': decimalSecond 
     }
 
+    # START: debug uncomment this section 
+    print "secondsSinceMidnight: " + str(secondsSinceMidnight)
+    print "decimalSecondsSinceMidnight: " + str(decimalSecondsSinceMidnight)
+    print "decimalSecondsRemainder(minutes): " + str(decimalSecondsRemainder)
     print "date: " + str(date)
     print "decimalHour: " + str(decimalHour)
     print "decimalMinute: " + str(decimalMinute)
     print "decimalSecond: " + str(decimalSecond)
     print "decimal: " + str(decimal)
+    # END: debug uncomment this section 
     
     return decimal
 
