@@ -35,13 +35,6 @@ def sleepTime(time):
     sleep = 0.864
     return sleep
 
-def renderHours(hours):
-    print bin(int(hours))
-
-
-def renderSeconds(seconds):
-    print bin(int(seconds))
-
 def renderBinary(value):
     value = abs(value)
     binaryValue = bin(int(value))
